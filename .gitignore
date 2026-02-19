@@ -1,0 +1,9 @@
+# Large model/embedding files
+*.txt
+*.vec
+*.pt
+q3_backup/
+saved_models/
+
+# But allow the specific best model we want to submit
+!q3/best_attn_glove_L1.pt
