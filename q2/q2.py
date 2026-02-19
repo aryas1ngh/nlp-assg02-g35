@@ -29,10 +29,10 @@ class Config:
     MODELS_DIR = 'saved_models'
     
     # embedding paths
-    GLOVE_PATH = '../glove.6B.100d.txt' 
+    # GLOVE_PATH = '../glove.6B.100d.txt' 
     FASTTEXT_PATH = '../wiki-news-300d-1M-subword.vec'
     
-    EMBEDDING_DIM_GLOVE = 100
+    # EMBEDDING_DIM_GLOVE = 100
     EMBEDDING_DIM_FASTTEXT = 300
     
     HIDDEN_DIM = 128
@@ -72,7 +72,7 @@ def load_data(filepath, has_labels=True):
                 continue
     return (ids, sentences, labels) if has_labels else (ids, sentences, None)
 
-# FIX 5: Better vocabulary building with min_freq=2 for noise reduction
+# better vocabulary building with min_freq=2 for noise reduction
 def build_vocab(sentences, labels, min_freq=2):
     word_counts = Counter()
     for sent in sentences:
@@ -113,7 +113,7 @@ class NERDataset(Dataset):
 def collate_fn(batch):
     sentences, labels, lengths = zip(*batch)
     sentences_padded = pad_sequence(sentences, batch_first=True, padding_value=0)
-    labels_padded = pad_sequence(labels, batch_first=True, padding_value=0)  # FIX 7: 0 not -1
+    labels_padded = pad_sequence(labels, batch_first=True, padding_value=0)  # 0 instead of -1
     return sentences_padded, labels_padded, torch.tensor(lengths)
 
 def get_chunks(seq, label_map_inv):
@@ -272,14 +272,14 @@ def train_epoch(model, loader, optimizer):
     for text, tags, lengths in pbar:
         text, tags = text.to(device), tags.to(device)
         
-        # FIX 13: Efficient mask creation (no loop)
+        # efficient mask creation (no loop)
         mask = (text != 0)
         
         optimizer.zero_grad()
         loss = model(text, lengths, labels=tags, mask=mask)
         loss.backward()
         
-        # Gradient clipping
+        # gradient clipping
         torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
         
         optimizer.step()
@@ -397,10 +397,10 @@ if __name__ == "__main__":
         overall_best_f1 = 0.0
         best_model_filename = ""
         
-        print("STARTING ABLATION STUDY: 6 experiments (2 embeddings, 3 layers)")
+        print("STARTING ABLATION STUDY: 3 experiments (1 embedding, 3 layers)")
         
-        # test both glove and fasttext
-        for pt in ['glove', 'fasttext']:
+        # only test fasttext now
+        for pt in ['fasttext']:
             if pt == 'glove':
                 e_dim = Config.EMBEDDING_DIM_GLOVE
                 e_path = Config.GLOVE_PATH
