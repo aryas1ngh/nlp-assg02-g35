@@ -9,3 +9,6 @@ q2/__pycache__/
 # But allow the specific best model we want to submit
 !q3/best_attn_glove_L1.pt
 !q2/best_model.pt
+!q1/best_model.pt
+
+dataset/cleaned*
