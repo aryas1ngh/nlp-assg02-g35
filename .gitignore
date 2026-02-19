@@ -1,9 +1,11 @@
 # Large model/embedding files
-*.txt
+glove.6B.100d.txt
 *.vec
-*.pt
 q3_backup/
 saved_models/
 
+venv/
+q2/__pycache__/
 # But allow the specific best model we want to submit
 !q3/best_attn_glove_L1.pt
+!q2/best_model.pt

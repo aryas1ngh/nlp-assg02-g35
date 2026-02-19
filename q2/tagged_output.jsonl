@@ -1,0 +1,5 @@
+{"id": "test_001", "tokens": ["Accident", "Azadpur", "Delhi", "mai", "hua", "hai"], "labels": ["O", "B-LOC", "I-LOC", "O", "O", "O"]}
+{"id": "test_002", "tokens": ["I", "live", "in", "Mumbai"], "labels": ["O", "O", "O", "B-LOC"]}
+{"id": "test_003", "tokens": ["Karol", "Bagh", "is", "a", "place", "in", "Delhi"], "labels": ["B-LOC", "I-LOC", "O", "O", "O", "O", "B-LOC"]}
+{"id": "test_004", "tokens": ["IIIT", "Delhi", "is", "a", "big", "institute"], "labels": ["O", "B-LOC", "O", "O", "O", "O"]}
+{"id": "test_005", "tokens": ["New", "Mumbai", "is", "a", "big", "city"], "labels": ["B-LOC", "I-LOC", "O", "O", "O", "O"]}
