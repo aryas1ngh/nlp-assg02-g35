@@ -3,6 +3,7 @@ glove.6B.100d.txt
 *.vec
 q3_backup/
 saved_models/
+q2/*.pdf
 
 venv/
 q2/__pycache__/
